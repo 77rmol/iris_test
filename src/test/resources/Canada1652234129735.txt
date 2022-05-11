@@ -1,0 +1,13 @@
+*********************************Canada*************************************
+********************************* Body ************************************
+{"error":false,"statusCode":200,"message":"OK","data":{"recovered":null,"deaths":39831,"confirmed":3810247,"lastChecked":"2022-05-11T00:58:08+00:00","lastReported":"2022-05-10T04:20:50+00:00","location":"Canada"}}'n
+********************************* Headers ************************************
+Content-Language=en
+Content-Type=application/json; charset=utf-8
+Date=Wed, 11 May 2022 01:55:30 GMT
+Server=RapidAPI-1.2.8
+X-Proxy-Cache=MISS
+X-RapidAPI-Region=AWS - us-east-1
+X-RapidAPI-Version=1.2.8
+Content-Length=213
+Connection=keep-alive'n

@@ -1,0 +1,76 @@
+defaultTasks '--no-build-cache', 'clean', 'test', 'aggregate'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-single-page-report:3.1.15"
+        classpath "net.serenity-bdd:serenity-gradle-plugin:3.2.1-RC1"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
+
+ext {
+    libs = [
+            slf4jApi: "org.slf4j:slf4j-api:${slf4jVersion}",
+            logback : "ch.qos.logback:logback-classic:${logbackVersion}",
+
+            test    : [
+                    serenity : [
+                            core               : "net.serenity-bdd:serenity-core:${serenityCoreVersion}",
+                            junit              : "net.serenity-bdd:serenity-junit:${serenityCoreVersion}",
+                            screenplay         : "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}",
+                            screenplayWebdriver: "net.serenity-bdd:serenity-screenplay-webdriver:${serenityCoreVersion}",
+                            cucumber           : "net.serenity-bdd:serenity-cucumber:${serenityCucumberVersion}",
+                            rest               : "net.serenity-bdd:serenity-rest-assured:${serenityRestAssured}"
+                    ],
+                    junit    : "junit:junit:${junitVersion}",
+                    assertj  : "org.assertj:assertj-core:${assertJVersion}",
+                    hamcrest : "org.hamcrest:hamcrest-all:${hamcrestVersion}"
+            ]
+    ]
+}
+
+dependencies {
+    implementation libs.test.serenity.screenplay,
+            libs.test.serenity.rest
+
+    testImplementation libs.logback,
+            libs.slf4jApi
+
+    testImplementation libs.test.junit,
+            libs.test.assertj,
+            libs.test.serenity.core,
+            libs.test.serenity.cucumber,
+            libs.test.serenity.junit,
+            libs.test.hamcrest
+
+    implementation 'net.serenity-bdd:serenity-single-page-report:3.1.15'
+}
+
+serenity {
+    reports = ["single-page-html"]
+}
+
+test {
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+}
+
+
+
+test.finalizedBy(aggregate)

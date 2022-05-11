@@ -1,0 +1,13 @@
+*********************************Mexico*************************************
+********************************* Body ************************************
+{"error":false,"statusCode":200,"message":"OK","data":{"recovered":null,"deaths":324465,"confirmed":5745652,"lastChecked":"2022-05-11T00:58:08+00:00","lastReported":"2022-05-10T04:20:50+00:00","location":"Mexico"}}'n
+********************************* Headers ************************************
+Content-Language=en
+Content-Type=application/json; charset=utf-8
+Date=Wed, 11 May 2022 01:55:29 GMT
+Server=RapidAPI-1.2.8
+X-Proxy-Cache=MISS
+X-RapidAPI-Region=AWS - us-east-1
+X-RapidAPI-Version=1.2.8
+Content-Length=214
+Connection=keep-alive'n
